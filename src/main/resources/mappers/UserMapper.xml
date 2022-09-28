@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.mapper.SmbmsMapper">
+
+    <select id="selectUserByUserName" resultType="com.qf.pojo.SmbmsUser">
+
+    select * from smbms_user where  userName=#{userName}
+    </select>
+
+
+    <resultMap id="userList" type="com.qf.pojo.SmbmsUser">
+        <id property="id" column="id"></id>
+        <result property="userCode" column="userCode"></result>
+        <result property="userName" column="userName"></result>
+        <result property="gender" column="gender"></result>
+        <result property="birthday" column="birthday"></result>
+        <result property="phone" column="phone"></result>
+<!--        关联关系-->
+        <association property="smbmsRole">
+            <id property="id" column="id"></id>
+            <result property="roleName" column="roleName"></result>
+        </association>
+    </resultMap>
+    <select id="showList" resultMap="userList">
+        select * from smbms_user u,smbms_role r where u.userRole=r.id
+        <if test="name !=null">
+            and u.userName like concat('%',#{name},'%')
+        </if>
+    </select>
+
+    <select id="SelectUserById" resultType="com.qf.pojo.SmbmsUser">
+        select * from smbms_user where id=#{id};
+    </select>
+
+    <insert id="addUser" parameterType="com.qf.pojo.SmbmsUser">
+        insert into smbms_user (userName,userPassword,gender,birder,birthday,phone,address,userRole)
+        values (#{userName},#{userPassword},#{gender},#{birder},#{birthday},#{phone},#{address},#{userRole})
+    </insert>
+
+    <delete id="deleteUser">
+        delete from smbms_user where id=#{id}
+    </delete>
+
+</mapper>
