@@ -54,8 +54,19 @@
         </if>
     </select>
 
+    <select id="smbmsProvider" resultType="com.qf.pojo.SmbmsProvider">
+        select * from smbms_provider
+        <if test="name !=null">
+            where proContact like concat('%',#{name},'%')
+        </if>
+    </select>
+
     <select id="SelectUserById" resultType="com.qf.pojo.SmbmsUser">
         select * from smbms_user where id=#{id};
+    </select>
+
+    <select id="SelectBillById" resultType="com.qf.pojo.SmbmsBill">
+        select * from smbms_bill where id=#{id};
     </select>
 
     <insert id="addUser" parameterType="com.qf.pojo.SmbmsUser">

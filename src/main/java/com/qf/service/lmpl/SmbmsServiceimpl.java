@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qf.mapper.SmbmsMapper;
 import com.qf.pojo.SmbmsBill;
+import com.qf.pojo.SmbmsProvider;
 import com.qf.pojo.SmbmsUser;
 import com.qf.service.SmbmsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +78,22 @@ public class SmbmsServiceimpl implements SmbmsService {
 
         PageInfo<SmbmsBill> smbmsBillPageInfo = new PageInfo<>(smbmsBill);
         return smbmsBillPageInfo;
+    }
+
+    @Override
+    public SmbmsBill selectBillById(int id) {
+        return  smbmsMapper.SelectBillById(id);
+    }
+
+    @Override
+    public PageInfo<SmbmsProvider> providerList(Integer pageNum, HashMap<Object, Object> map) {
+        //设置分页内容
+        PageHelper.startPage(pageNum,5);
+
+        List<SmbmsProvider> smbmsProvider = smbmsMapper.smbmsProvider(map);
+
+        PageInfo<SmbmsProvider> smbmsProviderPageInfo = new PageInfo<>(smbmsProvider);
+        return smbmsProviderPageInfo;
     }
 
 }

@@ -40,8 +40,9 @@
                 <span>账单管理页面</span>
             </div>
             <div class="search">
+                <form action="/billList">
                 <span>商品名称：</span>
-                <input type="text" placeholder="请输入商品的名称"/>
+                <input type="text" name="name" th:value="${name}" placeholder="请输入商品的名称"/>
                 
                 <span>供应商：</span>
                 <select name="tigong" >
@@ -59,6 +60,7 @@
 
                 <input type="submit" value="查询"/>
                 <a href="billAdd">添加订单</a>
+                </form>
             </div>
             <!--账单表格 样式和供应商公用-->
             <table class="providerTable" cellpadding="0" cellspacing="0">
@@ -71,7 +73,7 @@
                     <th width="10%">创建时间</th>
                     <th width="30%">操作</th>
                 </tr>
-                <tr  th:each="l:${PageInfo.list}">
+                <tr  th:each="l:${PageInfoBill.list}">
                     <td th:text="${l.billCode}">213</td>
                     <td th:text="${l.productName}">123</td>
                     <td th:text="${l.smbmsProvider.proName}">北京市粮油总公司</td>
@@ -89,14 +91,14 @@
                 </tr>
             </table>
             <div style="text-align: center">
-                共<span th:text="${PageInfo.total}"></span>条记录,1/5/<span th:text="${PageInfo.pages}"></span>
-                <a th:if="${PageInfo.pageNum==1}" href="javascript:void(0)">上一页</a>
-                <a th:if="${PageInfo.pageNum!=1}" th:href="@{/billList(PageNum=${PageInfo.pageNum}-1,name=${name})}">上一页</a>
-                <span th:each="i:${#numbers.sequence(1,PageInfo.pages)}">
+                共<span th:text="${PageInfoBill.total}"></span>条记录,1/5/<span th:text="${PageInfoBill.pages}"></span>
+                <a th:if="${PageInfoBill.pageNum==1}" href="javascript:void(0)">上一页</a>
+                <a th:if="${PageInfoBill.pageNum!=1}" th:href="@{/billList(PageNum=${PageInfoBill.pageNum}-1,name=${name})}">上一页</a>
+                <span th:each="i:${#numbers.sequence(1,PageInfoBill.pages)}">
                     <a th:href="@{/userList(PageNum=${i})}" th:text="${i}"></a>
                 </span>
-                <a th:if="${PageInfo.PageNum}!=${PageInfo.pages}" th:href="@{/billList(PageNum=${PageInfo.pageNum}+1,name=${name})}">下一页</a>
-                <a th:if="${PageInfo.pageNum}==${PageInfo.pages}" href="javascript:void(0)">下一页</a>
+                <a th:if="${PageInfoBill.PageNum}!=${PageInfoBill.pages}" th:href="@{/billList(PageNum=${PageInfoBill.pageNum}+1,name=${name})}">下一页</a>
+                <a th:if="${PageInfoBill.pageNum}==${PageInfoBill.pages}" href="javascript:void(0)">下一页</a>
             </div>
         </div>
     </section>

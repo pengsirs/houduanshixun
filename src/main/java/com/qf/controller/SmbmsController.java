@@ -1,6 +1,7 @@
 package com.qf.controller;
 import com.github.pagehelper.PageInfo;
 import com.qf.pojo.SmbmsBill;
+import com.qf.pojo.SmbmsProvider;
 import com.qf.pojo.SmbmsUser;
 import com.qf.service.SmbmsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,9 +58,18 @@ public class SmbmsController {
         map.put("name",name);
         model.addAttribute("name",name);
         PageInfo<SmbmsBill> smbmsBillPageInfo = smbmsService.billList(PageNum,map);
-        model.addAttribute("PageInfo",smbmsBillPageInfo);
-        System.out.println(smbmsBillPageInfo+"?????????");
+        model.addAttribute("PageInfoBill",smbmsBillPageInfo);
         return "billList";
+    }
+
+    @RequestMapping("/providerList")
+    public String PreviderList(Model model,@RequestParam(defaultValue = "1") Integer PageNum,String name){
+        HashMap<Object,Object> map = new HashMap<>();
+        map.put("name",name);
+        model.addAttribute("name",name);
+        PageInfo<SmbmsProvider> smbmsProviderPageInfo = smbmsService.providerList(PageNum,map);
+        model.addAttribute("PageInfoProvider",smbmsProviderPageInfo);
+        return "providerList";
     }
 
     @RequestMapping("/userView")
@@ -72,6 +82,22 @@ public class SmbmsController {
             model.addAttribute("user",smbmsUser);
             return "userView";
         }
+    }
+    @RequestMapping("/billView")
+    public String SelectBill(Model model,int id) {
+        SmbmsBill smbmsBill = smbmsService.selectBillById(id);
+        if (smbmsBill == null) {
+            System.out.println("查询失败");
+            return "error";
+        } else {
+            model.addAttribute("bill",smbmsBill);
+            System.out.println(smbmsBill+"?????????");
+            return "billView";
+        }
+    }
+    @RequestMapping("/password")
+    public String PassWord(){
+        return "password";
     }
     @RequestMapping("/userAdd")
     public String Usadd(){
