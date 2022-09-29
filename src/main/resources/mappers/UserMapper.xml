@@ -28,6 +28,32 @@
         </if>
     </select>
 
+
+    <resultMap id="smbmsBill" type="com.qf.pojo.SmbmsBill">
+        <id property="id" column="id"></id>
+        <result property="billCode" column="billCode"></result>
+        <result property="productName" column="productName"></result>
+        <result property="productUnit" column="productUnit"></result>
+        <result property="productCount" column="productCount"></result>
+        <result property="totalPrice" column="totalPrice"></result>
+        <result property="isPayment" column="isPayment"></result>
+        <result property="createdBy" column="createdBy"></result>
+        <result property="creationDate" column="creationDate"></result>
+        <result property="providerId" column="providerId"></result>
+        <!--        关联关系-->
+        <association property="smbmsProvider">
+            <id property="id" column="id"></id>
+            <result property="proName" column="proName"></result>
+        </association>
+    </resultMap>
+
+    <select id="smbmsBill" resultMap="smbmsBill">
+        select * from smbms_bill u,smbms_provider r where u.providerId=r.id
+        <if test="name !=null">
+            and u.productName like concat('%',#{name},'%')
+        </if>
+    </select>
+
     <select id="SelectUserById" resultType="com.qf.pojo.SmbmsUser">
         select * from smbms_user where id=#{id};
     </select>

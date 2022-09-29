@@ -1,6 +1,7 @@
 package com.qf.service;
 
 import com.github.pagehelper.PageInfo;
+import com.qf.pojo.SmbmsBill;
 import com.qf.pojo.SmbmsUser;
 
 import java.util.HashMap;
@@ -19,6 +20,5 @@ public interface SmbmsService {
     //删除用户
     public int deleteUser(int id);
 
-
-
+    public PageInfo<SmbmsBill> billList(Integer pageNum, HashMap<Object,Object>map);
 }

@@ -1,5 +1,6 @@
 package com.qf.mapper;
 
+import com.qf.pojo.SmbmsBill;
 import com.qf.pojo.SmbmsUser;
 
 import java.util.HashMap;
@@ -19,4 +20,6 @@ public interface SmbmsMapper {
     public int addUser(SmbmsUser smbmsUser);
     //删除用户
     public int deleteUser(int id);
+
+    public List<SmbmsBill> smbmsBill(HashMap<Object,Object>map);
 }

@@ -1,5 +1,6 @@
 package com.qf.controller;
 import com.github.pagehelper.PageInfo;
+import com.qf.pojo.SmbmsBill;
 import com.qf.pojo.SmbmsUser;
 import com.qf.service.SmbmsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +48,18 @@ public class SmbmsController {
         model.addAttribute("name",name);
         PageInfo<SmbmsUser> smbmsUserPageInfo = smbmsService.showList(PageNum,map);
         model.addAttribute("PageInfo",smbmsUserPageInfo);
-        System.out.println(smbmsUserPageInfo+"!!!!!!!!!!");
         return "userList";
+    }
+
+    @RequestMapping("/billList")
+    public String BillList(Model model,@RequestParam(defaultValue = "1") Integer PageNum,String name){
+        HashMap<Object,Object> map = new HashMap<>();
+        map.put("name",name);
+        model.addAttribute("name",name);
+        PageInfo<SmbmsBill> smbmsBillPageInfo = smbmsService.billList(PageNum,map);
+        model.addAttribute("PageInfo",smbmsBillPageInfo);
+        System.out.println(smbmsBillPageInfo+"?????????");
+        return "billList";
     }
 
     @RequestMapping("/userView")

@@ -3,6 +3,7 @@ package com.qf.service.lmpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qf.mapper.SmbmsMapper;
+import com.qf.pojo.SmbmsBill;
 import com.qf.pojo.SmbmsUser;
 import com.qf.service.SmbmsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,17 @@ public class SmbmsServiceimpl implements SmbmsService {
     @Override
     public int deleteUser(int id){
         return smbmsMapper.deleteUser(id);
+    }
+
+    @Override
+    public PageInfo<SmbmsBill> billList(Integer pageNum, HashMap<Object, Object> map) {
+        //设置分页内容
+        PageHelper.startPage(pageNum,5);
+
+        List<SmbmsBill> smbmsBill = smbmsMapper.smbmsBill(map);
+
+        PageInfo<SmbmsBill> smbmsBillPageInfo = new PageInfo<>(smbmsBill);
+        return smbmsBillPageInfo;
     }
 
 }
