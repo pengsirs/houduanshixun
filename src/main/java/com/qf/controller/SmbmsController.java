@@ -95,6 +95,18 @@ public class SmbmsController {
             return "billView";
         }
     }
+    @RequestMapping("/providerView")
+    public String SelectProvider(Model model,int id) {
+        SmbmsProvider smbmsProvider = smbmsService.selectProviderById(id);
+        if (smbmsProvider == null) {
+            System.out.println("查询失败");
+            return "error";
+        } else {
+            model.addAttribute("provider",smbmsProvider);
+            System.out.println(smbmsProvider+"?????????");
+            return "providerView";
+        }
+    }
     @RequestMapping("/password")
     public String PassWord(){
         return "password";
@@ -124,12 +136,50 @@ public class SmbmsController {
                 return "eror";
             }
     }
+
+    @RequestMapping("/providerAdd")
+    public String ProviderAdd(){
+        return "providerAdd";
+    }
+    @RequestMapping("/billAdd")
+    public String BillAdd(){
+        return "billAdd";
+    }
+    @RequestMapping("/providerUpdata")
+    public String ProviderUpdata(){
+        return "providerUpdata";
+    }
+    @RequestMapping("/billUpdata")
+    public String BillUpdata(){
+        return "billUpdata";
+    }
+
     @RequestMapping("/deleteUser")
     public String deleteUser (Model model,int id){
         int i = smbmsService.deleteUser(id);
         if(i>0){
             System.out.println(i);
             return "redirect:/userList";
+        }else{
+            return "error";
+        }
+    }
+    @RequestMapping("/deleteProvider")
+    public String deleteProvider(Model model,int id){
+        int i = smbmsService.deleteProvider(id);
+        if(i>0){
+            System.out.println(i);
+            return "redirect:/providerList";
+        }else{
+            return "error";
+        }
+    }
+    @RequestMapping("/deleteBill")
+    public String deleteBill(Model model,int id){
+        int i = smbmsService.deleteBill(id);
+        if(i>0){
+            System.out.println(i);
+            return "redirect:/billList";
         }else{
             return "error";
         }

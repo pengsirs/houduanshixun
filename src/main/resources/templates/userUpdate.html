@@ -27,9 +27,9 @@
         <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
         <nav>
             <ul class="list">
-                <li id="active"><a href="billList">账单管理</a></li>
-                <li><a href="providerList">供应商管理</a></li>
-                <li><a href="userList">用户管理</a></li>
+                <li><a href="billList">账单管理</a></li>
+                <li ><a href="providerList">供应商管理</a></li>
+                <li id="active"><a href="userList">用户管理</a></li>
                 <li><a href="password">密码修改</a></li>
                 <li><a href="login">退出系统</a></li>
             </ul>
@@ -38,55 +38,49 @@
     <div class="right">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
-            <span>账单管理页面 >> 订单添加页面</span>
+            <span>用户管理页面 >> 用户修改页面</span>
         </div>
         <div class="providerAdd">
             <form action="#">
                 <!--div的class 为error是验证错误，ok是验证成功-->
-                <div class="">
-                    <label for="billId">订单编码：</label>
-                    <input type="text" name="billId" id="billId" required/>
-                    <span>*请输入订单编码</span>
-                </div>
                 <div>
-                    <label for="billName">商品名称：</label>
-                    <input type="text" name="billName" id="billName" required/>
-                    <span >*请输入商品名称</span>
+                    <label for="userName">用户名称：</label>
+                    <input type="text" name="userName" id="userName" placeholder="韩露"/>
+                    <span >*</span>
                 </div>
-                <div>
-                    <label for="billCom">商品单位：</label>
-                    <input type="text" name="billCom" id="billCom" required/>
-                    <span>*请输入商品单位</span>
 
-                </div>
                 <div>
-                    <label for="billNum">商品数量：</label>
-                    <input type="text" name="billNum" id="billNum" required/>
-                    <span>*请输入大于0的正自然数，小数点后保留2位</span>
-                </div>
-                <div>
-                    <label for="money">总金额：</label>
-                    <input type="text" name="money" id="money" required/>
-                    <span>*请输入大于0的正自然数，小数点后保留2位</span>
-                </div>
-                <div>
-                    <label >供应商：</label>
-                    <select name="supplier" >
-                        <option value="">--请选择相应的提供商--</option>
-                        <option value="">北京市粮油总公司</option>
-                        <option value="">邯郸市五得利面粉厂</option>
+                    <label >用户性别：</label>
 
+                    <select name="">
+                        <option value="man">男</option>
+                        <option value="woman" selected>女</option>
                     </select>
-                    <span>*请选择供应商</span>
                 </div>
                 <div>
-                    <label >是否付款：</label>
-                    <input type="radio" name="zhifu"checked />未付款
-                    <input type="radio" name="zhifu"/>已付款
+                    <label for="data">出生日期：</label>
+                    <input type="text" name="data" id="data" placeholder="2016年2月1日"/>
+                    <span >*</span>
+                </div>
+                <div>
+                    <label for="userphone">用户电话：</label>
+                    <input type="text" name="userphone" id="userphone" placeholder="13533667897"/>
+                    <span >*</span>
+                </div>
+                <div>
+                    <label for="userAddress">用户地址：</label>
+                    <input type="text" name="userAddress" id="userAddress" placeholder="北京"/>
+                </div>
+                <div>
+                    <label >用户类别：</label>
+                    <input type="radio" name="userlei"/>管理员
+                    <input type="radio" name="userlei" checked/>经理
+                    <input type="radio" name="userlei"/>普通用户
+
                 </div>
                 <div class="providerAddBtn">
                     <!--<a href="#">保存</a>-->
-                    <!--<a href="billList">返回</a>-->
+                    <!--<a href="userList">返回</a>-->
                     <input type="button" value="保存" onclick="history.back(-1)"/>
                     <input type="button" value="返回" onclick="history.back(-1)"/>
                 </div>

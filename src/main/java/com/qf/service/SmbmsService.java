@@ -26,4 +26,10 @@ public interface SmbmsService {
     public SmbmsBill selectBillById(int id);
 
     public PageInfo<SmbmsProvider> providerList(Integer pageNum, HashMap<Object, Object> map);
+
+    public SmbmsProvider selectProviderById(int id);
+
+    public int deleteProvider(int id);
+
+    public int deleteBill(int id);
 }

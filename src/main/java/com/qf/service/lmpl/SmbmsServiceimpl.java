@@ -96,5 +96,21 @@ public class SmbmsServiceimpl implements SmbmsService {
         return smbmsProviderPageInfo;
     }
 
+    @Override
+    public SmbmsProvider selectProviderById(int id) {
+        return  smbmsMapper.SelectProviderById(id);
+    }
+
+    @Override
+    public int deleteProvider(int id) {
+        return smbmsMapper.deleteProvider(id);
+    }
+
+    @Override
+    public int deleteBill(int id) {
+        return smbmsMapper.deleteBill(id);
+    }
+
+
 }
 

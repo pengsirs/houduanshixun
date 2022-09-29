@@ -69,6 +69,10 @@
         select * from smbms_bill where id=#{id};
     </select>
 
+    <select id="SelectProviderById" resultType="com.qf.pojo.SmbmsProvider">
+        select * from smbms_proVider where id=#{id};
+    </select>
+
     <insert id="addUser" parameterType="com.qf.pojo.SmbmsUser">
         insert into smbms_user (userName,userPassword,gender,birthday,phone,address,userRole)
         values (#{userName},#{userPassword},#{gender},#{birthday},#{phone},#{address},#{userRole})
@@ -76,6 +80,14 @@
 
     <delete id="deleteUser">
         delete from smbms_user where id=#{id}
+    </delete>
+
+    <delete id="deleteProvider">
+        delete from smbms_Provider where id=#{id}
+    </delete>
+
+    <delete id="deleteBill">
+        delete from smbms_bill where id=#{id}
     </delete>
 
 </mapper>

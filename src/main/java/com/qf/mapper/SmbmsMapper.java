@@ -27,4 +27,10 @@ public interface SmbmsMapper {
     public SmbmsBill SelectBillById(int id);
 
     public List<SmbmsProvider> smbmsProvider(HashMap<Object, Object> map);
+
+    public SmbmsProvider SelectProviderById(int id);
+
+    public int deleteProvider(int id);
+
+    public int deleteBill(int id);
 }

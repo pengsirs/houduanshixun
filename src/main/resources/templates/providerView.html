@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <meta charset="UTF-8">
     <title>超市账单管理系统</title>
@@ -40,13 +40,13 @@
             <strong>你现在所在的位置是:</strong>
             <span>供应商管理页面 >> 信息查看</span>
         </div>
-        <div class="providerView">
-            <p><strong>供应商编码：</strong><span>PRO-CODE—001</span></p>
-            <p><strong>供应商名称：</strong><span>测试供应商001</span></p>
-            <p><strong>联系人：</strong><span>韩露</span></p>
-            <p><strong>联系电话：</strong><span>15918230478</span></p>
-            <p><strong>传真：</strong><span>15918230478</span></p>
-            <p><strong>描述：</strong><span>描述</span></p>
+        <div class="providerView" th:object="${provider}">
+            <p><strong>供应商编码：</strong><span th:text="${provider.proCode}">PRO-CODE—001</span></p>
+            <p><strong>供应商名称：</strong><span th:text="${provider.proName}">测试供应商001</span></p>
+            <p><strong>联系人：</strong><span th:text="${provider.proContact}">韩露</span></p>
+            <p><strong>联系电话：</strong><span th:text="${provider.proPhone}">15918230478</span></p>
+            <p><strong>传真：</strong><span th:text="${provider.proFax}">15918230478</span></p>
+            <p><strong>描述：</strong><span th:text="${provider.proDesc}">描述</span></p>
 
             <a href="providerList">返回</a>
         </div>
