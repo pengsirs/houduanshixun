@@ -41,11 +41,11 @@ public class SmbmsController {
     }
 
     @RequestMapping("/userList")
-    public String UserList(Model model, @RequestParam(defaultValue = "1") Integer pageNum,String name){
+    public String UserList(Model model, @RequestParam(defaultValue = "1") Integer PageNum,String name){
         HashMap<Object,Object> map = new HashMap<>();
         map.put("name",name);
         model.addAttribute("name",name);
-        PageInfo<SmbmsUser> smbmsUserPageInfo = smbmsService.showList(pageNum,map);
+        PageInfo<SmbmsUser> smbmsUserPageInfo = smbmsService.showList(PageNum,map);
         model.addAttribute("PageInfo",smbmsUserPageInfo);
         System.out.println(smbmsUserPageInfo+"!!!!!!!!!!");
         return "userList";
