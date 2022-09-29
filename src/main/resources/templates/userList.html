@@ -26,11 +26,11 @@
             <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
             <nav>
                 <ul class="list">
-                    <li><a href="billList.html">账单管理</a></li>
-                    <li><a href="providerList.html">供应商管理</a></li>
-                    <li  id="active"><a href="userList.html">用户管理</a></li>
-                    <li><a href="password.html">密码修改</a></li>
-                    <li><a href="login.html">退出系统</a></li>
+                    <li><a href="/billList">账单管理</a></li>
+                    <li><a href="/providerList">供应商管理</a></li>
+                    <li  id="active"><a href="/userList">用户管理</a></li>
+                    <li><a href="/password">密码修改</a></li>
+                    <li><a href="/login">退出系统</a></li>
                 </ul>
             </nav>
         </div>
@@ -43,7 +43,7 @@
                 <form action="/userList">
                     <input type="text" name="name" th:value="${name}" placeholder="请输入用户名"/>
                     <input type="submit" value="查询"/>
-                    <a href="userAdd.html">添加用户</a>
+                    <a href="/userAdd">添加用户</a>
                 </form>
             </div>
             <!--用户-->
@@ -68,27 +68,14 @@
                     <td th:text="${u.phone}">15918230478</td>
                     <td th:text="${u.smbmsRole.roleName}">经理</td>
                     <td>
-                        <a th:href="@{/userView(id=${u.id})}"><img src="img/read.png" alt="查看" title="查看"/></a>
-                        <a th:href="@{/userUpdate(id=${u.id})}"><img src="img/xiugai.png" alt="修改" title="修改"/></a>
-                        <a href="javascript:void(0)" th:onclick="|javascript:a('${u.id}')|" class="removeUser"><img src="img/schu.png" alt="删除" title="删除"/></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>PRO-CODE—001</td>
-                    <td>测试供应商001</td>
-                    <td>韩露</td>
-                    <td>15918230478</td>
-                    <td>15918230478</td>
-                    <td>2015-11-12</td>
-                    <td>
-                        <a href="userView.html"><img src="img/read.png" alt="查看" title="查看"/></a>
-                        <a href="userUpdate.html"><img src="img/xiugai.png" alt="修改" title="修改"/></a>
-                        <a href="#" class="removeUser"><img src="img/schu.png" alt="删除" title="删除"/></a>
+                        <a th:href="@{/userView(id=${u.id})}"><img src="images/read.png" alt="查看" title="查看"/></a>
+                        <a th:href="@{/userUpdate(id=${u.id})}"><img src="images/xiugai.png" alt="修改" title="修改"/></a>
+                        <a href="javascript:void(0)" th:onclick="|javascript:a('${u.id}')|" class="removeUser"><img src="images/schu.png" alt="删除" title="删除"/></a>
                     </td>
                 </tr>
             </table>
             <div style="text-align: center">
-                共<span th:text="${PageInfo.total}"></span>条记录,1/5<span th:text="${PageInfo.pages}"></span>
+                共<span th:text="${PageInfo.total}"></span>条记录,1/5/<span th:text="${PageInfo.pages}"></span>
                 <a th:if="${PageInfo.pageNum==1}" href="javascript:void(0)">上一页</a>
                 <a th:if="${PageInfo.pageNum!=1}" th:href="@{/userList(PageNum=${PageInfo.pageNum}-1,name=${name})}">上一页</a>
                 <span th:each="i:${#numbers.sequence(1,PageInfo.pages)}">
@@ -107,8 +94,8 @@
         <h2>提示</h2>
         <div class="removeMain">
             <p>你确定要删除该用户吗？</p>
-            <a href="#" id="yes">确定</a>
-            <a href="#" id="no">取消</a>
+            <a href="javascript:void(0)" id="yes" th:onclick="b()">确定</a>
+            <a href="javascript:void(0)" id="no">取消</a>
         </div>
     </div>
 </div>
@@ -127,7 +114,7 @@
         ids=id;
     }
     function b(){
-        window.location.href="/deleteUser?id"+ids
+        window.location.href="/deleteUser?id="+ids
     }
 </script>
 

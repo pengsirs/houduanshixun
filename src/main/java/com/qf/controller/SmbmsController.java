@@ -92,7 +92,7 @@ public class SmbmsController {
         int i = smbmsService.deleteUser(id);
         if(i>0){
             System.out.println(i);
-            return "redirect/userList";
+            return "redirect:/userList";
         }else{
             return "error";
         }
